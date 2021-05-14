@@ -10,9 +10,9 @@ public class CountDuplicateCharacters1 {
     public static void main(String[] args) {
         String str = "Nirav Joshi";
         String strWithUTF32 = "Nirav Joshi \uD83D\uDC95";
-        String str1 = String.valueOf(Character.toChars(128149));
+//        String str1 = String.valueOf(Character.toChars(128149));
 
-        System.out.println(countDuplicateCharacters(str).toString());
+        System.out.println(countDuplicateCharacters(str));
         System.out.println(countDuplicateCharactersUsingLambda(str).toString());
 
         System.out.println(countDuplicateCharactersUTF(strWithUTF32));
@@ -42,10 +42,9 @@ public class CountDuplicateCharacters1 {
      * and value represents how many time specific character is present into string.
      */
     private static Map<Character, Long> countDuplicateCharactersUsingLambda(String str) {
-        Map<Character, Long> result = str.chars()
+        return str.chars()
                 .mapToObj(c -> (char) c)
                 .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
-        return result;
     }
 
     /**
@@ -83,9 +82,8 @@ public class CountDuplicateCharacters1 {
      * and value represents how many time specific character is present into string.
      */
     private static Map<String, Long> countDuplicateCharactersUTFUsingLambda(String str) {
-        Map<String, Long> result = str.codePoints()
+        return str.codePoints()
                 .mapToObj(ch -> String.valueOf(Character.toChars(ch)))
                 .collect(Collectors.groupingBy(ch -> ch, Collectors.counting()));
-        return result;
     }
 }
